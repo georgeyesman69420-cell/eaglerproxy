@@ -11,24 +11,21 @@ export const config: Config = {
   adapter: {
     name: "EaglerProxy",
     bindHost: "0.0.0.0",
-    bindPort: 8080,
+    // CRITICAL: Render requires process.env.PORT to start correctly
+    bindPort: parseInt(process.env.PORT || "8080"), 
     maxConcurrentClients: 20,
     skinUrlWhitelist: undefined,
-    motd: true
-      ? "FORWARD"
-      : {
-          iconURL: "logo.png",
-          l1: "yes",
-          l2: "no",
-        },
+    motd: "FORWARD", // Keeps your Aternos MOTD
     origins: {
       allowOfflineDownloads: true,
       originWhitelist: null,
       originBlacklist: null,
     },
     server: {
-      host: "no",
-      port: 46625,
+      // 1. CHANGE THIS to your Aternos IP (e.g., "example.aternos.me")
+      host: "YOUR_SERVER_NAME.aternos.me", 
+      // 2. CHANGE THIS to your Aternos Port (the 5-digit number)
+      port: 46625, 
     },
     tls: undefined,
   },
